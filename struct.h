@@ -22,10 +22,11 @@ friend class Linkedlist;
 
 
 class Linkedlist{
+        int key;
         Nodo* head;
         int size;
     public:
-        Linkedlist();
+        Linkedlist(int setkey);
 
         void insert(int data, float rating);
         int search(int data);
@@ -44,15 +45,16 @@ class BNode {
     bool leaf;
     vector <int> keys;
     vector <BNode *> childs;
-    Linkedlist* ptrList;
+    vector <Linkedlist *> lists_mr; // igual al numero de keys
 public:
     BNode(int _t, bool _leaf);
 
-    void linkList(Linkedlist list);
-    void insertNonFull(int k);
+    void insertNonFull(int k, int data, float rating);
     void splitChild(int i, BNode *y);
     void traverse();
     BNode *search(int k);
+    void printlist_node(int k);
+    void printListL();
 
 friend class BTree;
 friend class Linkedlist;
@@ -74,6 +76,8 @@ public:
         return (root == NULL)? NULL : root->search(k);
     }
 
+    void printlist_node(int k);
+
     BNode* getRoot() {
         return root;
     }
@@ -81,7 +85,7 @@ public:
     int minimum(BNode *x);
     int maximum(BNode *x);
 
-    void insert(int k);
+    void insert(int k, int data, float rating) ;
 
 friend class BNode;
 };
